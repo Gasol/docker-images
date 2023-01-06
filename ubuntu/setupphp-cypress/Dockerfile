@@ -15,6 +15,13 @@ RUN echo 'deb http://ppa.launchpad.net/apt-fast/stable/ubuntu jammy main' > \
   && rm -rf /var/lib/apt/lists/* \
   && rm /etc/apt/sources.list.d/apt-fast.list
 
+RUN apt-get update \
+  && apt-get install -y --no-install-recommends fonts-liberation wget xdg-utils \
+  && rm -rf /var/lib/apt/lists/* \
+  && curl -LO http://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_108.0.5359.124-1_amd64.deb \
+  && dpkg -i google-chrome-stable_108.0.5359.124-1_amd64.deb \
+  && rm google-chrome-stable_108.0.5359.124-1_amd64.deb
+
 LABEL org.opencontainers.image.authors="gasol.wu@gmail.com"
 
 CMD [ "/bin/bash" ]
